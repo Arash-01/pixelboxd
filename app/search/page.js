@@ -178,16 +178,6 @@ export default function SearchPage() {
         .sr-empty { text-align: center; padding: 60px 0; color: var(--muted); font-family: 'Space Mono', monospace; font-size: 13px; }
       `}</style>
 
-      <nav className="sr-nav">
-        <div className="sr-nav-inner">
-          <a href="/" className="sr-logo">
-            <div className="sr-logo-dot"></div>
-            PIXELBOXD
-          </a>
-          <a href="/" style={{color:'var(--muted)',textDecoration:'none',fontSize:13}}>← Back to home</a>
-        </div>
-      </nav>
-
       <Suspense fallback={<div style={{color:'#7a7f96',padding:40,fontFamily:'monospace'}}>Loading…</div>}>
         <SearchContent />
       </Suspense>
