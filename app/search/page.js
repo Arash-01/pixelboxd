@@ -1,12 +1,33 @@
 'use client'
 import { useState } from 'react'
+import { useEffect } from 'react'
 import LogButton from '../components/LogButton'
 
+import { useSearchParams } from 'next/navigation'
+
 export default function SearchPage() {
-  const [query, setQuery] = useState('')
+  const searchParams = useSearchParams()
+  const initial = searchParams.get('q') || ''
+  const [query, setQuery] = useState(initial)
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
   const [selected, setSelected] = useState(null)
+
+  useEffect(() => {
+    if (initial) handleSearch(initial)
+  }, [])
+
+  async function handleSearch(q = query) {
+    if (!q.trim()) return
+    setLoading(true)
+    setResults([])
+    setSelected(null)
+
+    const res = await fetch(`/api/games?q=${encodeURIComponent(q)}`)
+    const data = await res.json()
+    setResults(data || [])
+    setLoading(false)
+  }
 
   async function handleSearch() {
     if (!query.trim()) return

@@ -342,8 +342,27 @@ export default function Home() {
             <li><a href="#">Journal</a></li>
           </ul>
           <div className="px-search">
-            <input type="text" placeholder="Search games, members, lists…" />
+            <input
+              type="text"
+              placeholder="Search games, members, lists…"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && e.target.value.trim()) {
+                  window.location.href = `/search?q=${encodeURIComponent(e.target.value.trim())}`
+                }
+              }}
+            />
           </div>
+          <div className="px-search">
+          <input
+            type="text"
+            placeholder="Search games, members, lists…"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && e.target.value.trim()) {
+                window.location.href = `/search?q=${encodeURIComponent(e.target.value.trim())}`
+              }
+            }}
+          />
+        </div>
           <div className="px-nav-right">
             <a href="/login" className="px-btn-ghost">Sign in</a>
             <a href="/login" className="px-btn-primary">Get started</a>
