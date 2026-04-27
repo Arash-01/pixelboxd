@@ -1,11 +1,25 @@
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Bonfire from "./Bonfire"; // Updated import name
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "Pixelboxd — Track games you've played.",
+  description: "Track, rate, and review your favorite video games.",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-black"> {/* Ensuring the site body is dark too */}
-        <Bonfire />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
