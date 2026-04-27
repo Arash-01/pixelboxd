@@ -1,4 +1,5 @@
-import ActivityFeed from './components/ActivityFeed'
+import dynamic from 'next/dynamic'
+const ActivityFeed = dynamic(() => import('./components/ActivityFeed'), { ssr: false })
 
 export default function Home() {
   return (
