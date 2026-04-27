@@ -1,3 +1,4 @@
+'use client'
 import dynamic from 'next/dynamic'
 const ActivityFeed = dynamic(() => import('./components/ActivityFeed'), { ssr: false })
 
