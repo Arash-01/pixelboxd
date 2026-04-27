@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 const YouDied = () => {
-  const [isOnline, setIsOnline] = useState(true);
+  const [isOnline, setIsOnline] = useState(false);
 
   useEffect(() => {
     setIsOnline(navigator.onLine);
