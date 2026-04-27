@@ -2,13 +2,19 @@
 import React, { useEffect, useState } from 'react';
 
 const YouDied = () => {
+  // We start as null so there is no "flicker" on load
   const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
-    setIsOnline(navigator.onLine);
+    // 1. Immediate check on mount
+    if (typeof window !== "undefined") {
+      setIsOnline(navigator.onLine);
+    }
+
     const goOnline = () => setIsOnline(true);
     const goOffline = () => setIsOnline(false);
 
+    // 2. Listen for changes
     window.addEventListener('online', goOnline);
     window.addEventListener('offline', goOffline);
 
@@ -18,6 +24,7 @@ const YouDied = () => {
     };
   }, []);
 
+  // If online, render nothing
   if (isOnline) return null;
 
   return (
