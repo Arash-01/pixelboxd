@@ -2,19 +2,16 @@
 import React, { useEffect, useState } from 'react';
 
 const YouDied = () => {
-  // We start as null so there is no "flicker" on load
   const [isOnline, setIsOnline] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // 1. Immediate check on mount
-    if (typeof window !== "undefined") {
-      setIsOnline(navigator.onLine);
-    }
+    setMounted(true);
+    setIsOnline(navigator.onLine);
 
     const goOnline = () => setIsOnline(true);
     const goOffline = () => setIsOnline(false);
 
-    // 2. Listen for changes
     window.addEventListener('online', goOnline);
     window.addEventListener('offline', goOffline);
 
@@ -24,8 +21,8 @@ const YouDied = () => {
     };
   }, []);
 
-  // If online, render nothing
-  if (isOnline) return null;
+  // If the component hasn't fully loaded yet, or if we're online, show nothing
+  if (!mounted || isOnline) return null;
 
   return (
     <div className="died-overlay">
