@@ -336,9 +336,10 @@ export default function Home() {
             PIXELBOXD
           </a>
           <ul className="px-nav-links">
-            {['Games','Lists','Members','Journal'].map(l => (
-              <li key={l}><a href="#">{l}</a></li>
-            ))}
+            <li><a href="/search">Games</a></li>
+            <li><a href="#">Lists</a></li>
+            <li><a href="#">Members</a></li>
+            <li><a href="#">Journal</a></li>
           </ul>
           <div className="px-search">
             <input type="text" placeholder="Search games, members, lists…" />
